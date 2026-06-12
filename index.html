@@ -1,0 +1,3811 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EXAMSLING — CBT Desktop Suite · Full Design System</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* ── Soft Clinical tokens (from Stitch design system) ── */
+        --background: #fbf9f9;
+        --surface: #ffffff;
+        --surface-low: #f5f3f3;
+        --surface-container: #efeded;
+        --surface-high: #e9e8e7;
+        --on-surface: #1b1c1c;
+        --on-surface-variant: #3d4947;
+        --outline: #6d7a77;
+        --outline-variant: #bdc9c6;
+        --primary: #006a63;
+        --primary-hover: #0a7c74;
+        --primary-container: #4db6ac;
+        --primary-fixed: #8ef4e9;
+        --on-primary-container: #00433f;
+        --secondary: #286b33;
+        --secondary-container: #abf4ac;
+        --tertiary-fixed: #d4e6e5;
+        --error: #ba1a1a;
+        --error-container: #ffdad6;
+        --on-error-container: #93000a;
+        --flag: #b88a1d;
+        --flag-container: #fff0c9;
+        --sh1: 0px 4px 20px rgba(0, 0, 0, 0.04);
+        --sh2: 0px 12px 32px rgba(0, 0, 0, 0.08);
+        --r-sm: 8px;
+        --r-md: 12px;
+        --r-lg: 16px;
+        --r-full: 9999px;
+        --fb: "Inter", -apple-system, sans-serif;
+        --fm: "JetBrains Mono", ui-monospace, monospace;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ═══════════════════════════════════════
+     DESIGN BOARD CHROME
+  ═══════════════════════════════════════ */
+      body {
+        background: #0b1614;
+        font-family: var(--fb);
+        padding: 56px 40px 90px;
+        min-height: 100vh;
+        color: #e8efed;
+        background-image:
+          radial-gradient(
+            ellipse at 12% 0%,
+            rgba(0, 106, 99, 0.22) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 88% 100%,
+            rgba(77, 182, 172, 0.1) 0%,
+            transparent 55%
+          );
+      }
+      .board {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .page-header {
+        text-align: center;
+        margin-bottom: 70px;
+      }
+      .brand-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        background: rgba(77, 182, 172, 0.12);
+        border: 1px solid rgba(77, 182, 172, 0.3);
+        border-radius: 100px;
+        padding: 7px 20px;
+        color: #8ef4e9;
+        font-size: 11px;
+        letter-spacing: 3.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+      .brand-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #4db6ac;
+        box-shadow: 0 0 10px #4db6ac;
+      }
+      .page-title {
+        font-size: 68px;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -3px;
+        line-height: 1.05;
+      }
+      .page-title span {
+        color: #4db6ac;
+      }
+      .page-sub {
+        margin-top: 16px;
+        color: #9db8b3;
+        font-size: 15.5px;
+        line-height: 1.65;
+        max-width: 680px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .screens-count {
+        margin-top: 22px;
+        display: inline-flex;
+        gap: 26px;
+        color: #7fa39d;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .screens-count b {
+        color: #fff;
+        font-weight: 800;
+        margin-right: 6px;
+      }
+      .section-label {
+        font-size: 13px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #4db6ac;
+        margin: 74px 0 26px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .section-label::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: rgba(77, 182, 172, 0.22);
+      }
+      .screens-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        justify-content: flex-start;
+      }
+      .screen-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+      }
+      .screen-tag {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #9db8b3;
+      }
+      .screen-tag b {
+        color: #fff;
+      }
+
+      /* ── Desktop window frame ── */
+      .window {
+        width: 1180px;
+        background: var(--background);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.55),
+          0 0 0 1px rgba(255, 255, 255, 0.07);
+        color: var(--on-surface);
+        font-size: 15px;
+        line-height: 1.5;
+        display: flex;
+        flex-direction: column;
+      }
+      .window.h640 .win-body {
+        height: 640px;
+      }
+      .window.h560 .win-body {
+        height: 560px;
+      }
+      .window.auto .win-body {
+        height: auto;
+      }
+      .titlebar {
+        flex: 0 0 auto;
+        height: 38px;
+        background: #eceae6;
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        gap: 8px;
+        border-bottom: 1px solid #e0ddd6;
+      }
+      .tb-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+      .tb-dot.r {
+        background: #f26d5f;
+      }
+      .tb-dot.y {
+        background: #f5bd4f;
+      }
+      .tb-dot.g {
+        background: #62c554;
+      }
+      .tb-title {
+        flex: 1;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: #8a877f;
+        letter-spacing: 0.3px;
+      }
+      .tb-pad {
+        width: 56px;
+      }
+      .win-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* ═══════════════════════════════════════
+     APP UI — shared (Soft Clinical)
+  ═══════════════════════════════════════ */
+      .appbar {
+        flex: 0 0 auto;
+        background: var(--surface);
+        box-shadow: var(--sh1);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 24px;
+        z-index: 3;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        flex: 0 0 auto;
+        background: var(--primary);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 15px;
+      }
+      .brand-t1 {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1.25;
+      }
+      .brand-t2 {
+        font-size: 12.5px;
+        color: var(--on-surface-variant);
+        line-height: 1.25;
+      }
+      .mode-chip {
+        font-size: 11.5px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        background: var(--tertiary-fixed);
+        color: var(--on-primary-container);
+        padding: 6px 14px;
+        border-radius: var(--r-full);
+        white-space: nowrap;
+      }
+      .mode-chip.amber {
+        background: var(--flag-container);
+        color: #7a6210;
+      }
+      .spacer {
+        flex: 1;
+      }
+      .chip {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: var(--r-full);
+        background: var(--surface-container);
+        color: var(--on-surface-variant);
+      }
+      .chip.teal {
+        background: #e6f4f2;
+        color: var(--primary);
+      }
+      .chip.green {
+        background: #eef9ee;
+        color: var(--secondary);
+      }
+      .chip.amber {
+        background: var(--flag-container);
+        color: #7a6210;
+      }
+      .chip.red {
+        background: var(--error-container);
+        color: var(--on-error-container);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: none;
+        border-radius: var(--r-md);
+        font-weight: 700;
+        font-size: 14.5px;
+        padding: 11px 22px;
+        box-shadow: var(--sh1);
+        font-family: var(--fb);
+      }
+      .btn.primary {
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn.outline {
+        background: var(--surface);
+        color: var(--on-surface-variant);
+        border: 1.5px solid var(--outline-variant);
+        box-shadow: none;
+      }
+      .btn.danger-o {
+        background: var(--surface);
+        color: var(--error);
+        border: 1.5px solid #e8b8b4;
+        box-shadow: none;
+      }
+      .btn.sm {
+        padding: 9px 16px;
+        font-size: 13.5px;
+      }
+      .save-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--secondary);
+        background: #f0faf0;
+        border: 1px solid #d6eed7;
+        padding: 7px 14px;
+        border-radius: var(--r-full);
+        white-space: nowrap;
+      }
+      .save-pill .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--secondary);
+      }
+      .save-pill.saving {
+        color: #7a6210;
+        background: var(--flag-container);
+        border-color: #eedba0;
+      }
+      .save-pill.saving .dot {
+        background: var(--flag);
+      }
+      .timer {
+        font-variant-numeric: tabular-nums;
+        background: var(--primary);
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        padding: 9px 18px;
+        border-radius: var(--r-md);
+      }
+      .timer.low {
+        background: var(--error);
+      }
+      .card {
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        box-shadow: var(--sh1);
+        padding: 22px 24px;
+      }
+
+      .footer-nav {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 24px 14px;
+      }
+      .nav-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 13px 26px;
+        border-radius: var(--r-md);
+        border: none;
+        min-width: 132px;
+        box-shadow: var(--sh1);
+        font-family: var(--fb);
+      }
+      .nav-btn.prev {
+        background: var(--surface);
+        color: var(--on-surface-variant);
+        border: 1.5px solid var(--outline-variant);
+        box-shadow: none;
+      }
+      .nav-btn.next {
+        background: var(--primary);
+        color: #fff;
+      }
+      .nav-btn.submit {
+        background: var(--surface);
+        color: var(--error);
+        border: 1.5px solid #e8b8b4;
+        margin-left: auto;
+        box-shadow: none;
+      }
+      .qmap {
+        display: flex;
+        gap: 8px;
+        flex: 1;
+        justify-content: center;
+      }
+      .qdot {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--r-md);
+        border: 1.5px solid var(--outline-variant);
+        background: var(--surface);
+        color: var(--on-surface-variant);
+        font-weight: 700;
+        font-size: 13.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .qdot.current {
+        border-color: var(--primary);
+        color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(0, 106, 99, 0.16);
+      }
+      .qdot.answered {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+      }
+      .qdot.flagged::after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--flag);
+        border: 2px solid var(--surface);
+      }
+
+      /* question card */
+      .exam-main {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        gap: 20px;
+        padding: 16px 24px 8px;
+      }
+      .work-col {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+      .q-card {
+        flex: 0 0 auto;
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        box-shadow: var(--sh1);
+        padding: 14px 20px 16px;
+        margin-bottom: 14px;
+        border-left: 5px solid var(--primary);
+      }
+      .q-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .q-number {
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+        color: var(--primary);
+      }
+      .q-actions {
+        margin-left: auto;
+        display: flex;
+        gap: 8px;
+      }
+      .ghost-btn {
+        display: inline-flex;
+        align-items: center;
+        border: 1.5px solid var(--outline-variant);
+        background: var(--surface);
+        color: var(--on-surface-variant);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 7px 14px;
+        border-radius: var(--r-sm);
+        font-family: var(--fb);
+      }
+      .ghost-btn.flag-on {
+        background: var(--flag-container);
+        border-color: #e3c878;
+        color: #7a6210;
+      }
+      .q-body {
+        margin-top: 10px;
+        font-size: 16.5px;
+        line-height: 1.6;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      .q-text {
+        flex: 1;
+      }
+      .q-figure {
+        flex: 0 0 auto;
+        width: 215px;
+        text-align: center;
+        background: var(--surface-low);
+        border: 1px solid var(--surface-high);
+        border-radius: var(--r-md);
+        padding: 10px;
+      }
+      .q-figure figcaption {
+        font-size: 12px;
+        color: var(--on-surface-variant);
+        margin-top: 6px;
+        font-weight: 500;
+      }
+
+      /* objective options */
+      .opt-list {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding-bottom: 6px;
+      }
+      .opt {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: var(--surface);
+        border: 1.5px solid var(--outline-variant);
+        border-radius: var(--r-md);
+        padding: 14px 18px;
+        font-size: 16px;
+        box-shadow: var(--sh1);
+      }
+      .opt .ok {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--r-full);
+        flex: 0 0 auto;
+        background: var(--surface-low);
+        color: var(--on-surface-variant);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 15px;
+      }
+      .opt.sel {
+        border-color: var(--primary);
+        background: #f2faf9;
+        box-shadow: 0 0 0 4px rgba(0, 106, 99, 0.12);
+      }
+      .opt.sel .ok {
+        background: var(--primary);
+        color: #fff;
+      }
+      .passage-pane {
+        width: 46%;
+        flex: 0 0 auto;
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        box-shadow: var(--sh1);
+        padding: 20px 24px;
+        overflow: hidden;
+      }
+      .passage-pane h4 {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 4px;
+      }
+      .pass-instr {
+        font-size: 13px;
+        color: var(--on-surface-variant);
+        margin-bottom: 12px;
+      }
+      .pass-text p {
+        margin-bottom: 12px;
+        font-size: 15.5px;
+        line-height: 1.7;
+      }
+
+      /* theory sheet */
+      .sheet-head {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin: 0 4px 8px;
+      }
+      .sheet-label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--on-surface-variant);
+      }
+      .sheet-tip {
+        font-size: 12.5px;
+        color: var(--outline);
+      }
+      .sheet {
+        flex: 1;
+        min-height: 0;
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        box-shadow: var(--sh1);
+        padding: 18px 22px 18px 64px;
+        background-image: linear-gradient(
+          90deg,
+          transparent 0 44px,
+          var(--tertiary-fixed) 44px 46px,
+          transparent 46px
+        );
+      }
+      .step-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .step-tag {
+        position: absolute;
+        left: -46px;
+        width: 34px;
+        text-align: right;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--outline);
+      }
+      .mf {
+        flex: 1;
+        min-width: 0;
+        background: var(--surface-low);
+        border: 1.5px solid transparent;
+        border-radius: var(--r-sm);
+        padding: 10px 14px;
+        font-size: 20px;
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .mf.focus {
+        background: var(--surface);
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(0, 106, 99, 0.18);
+      }
+      .mf .caret {
+        width: 1.6px;
+        height: 26px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+      .mf.final {
+        border: 2px solid var(--primary-container);
+        background: var(--surface);
+      }
+      .step-del {
+        flex: 0 0 auto;
+        width: 36px;
+        height: 36px;
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--outline);
+        font-size: 15px;
+      }
+      .add-step {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        margin-top: 2px;
+        border: 1.5px dashed var(--outline-variant);
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 14.5px;
+        padding: 11px;
+        border-radius: var(--r-sm);
+        background: transparent;
+      }
+      .final-block {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1.5px solid var(--surface-high);
+      }
+      .final-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 7px;
+      }
+
+      /* keypad */
+      .pad-col {
+        width: 400px;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        box-shadow: var(--sh1);
+        padding: 14px 14px 12px;
+      }
+      .pad-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 4px 10px;
+      }
+      .pad-title {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--on-surface-variant);
+      }
+      .pad-sub {
+        font-size: 11.5px;
+        color: var(--outline);
+      }
+      .pad-zone-label {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--outline);
+        margin: 10px 4px 6px;
+      }
+      .pad-zone-label.first {
+        margin-top: 0;
+      }
+      .grid6 {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 7px;
+      }
+      .grid5 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 7px;
+      }
+      .key {
+        height: 48px;
+        border-radius: var(--r-sm);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0 1.5px 0 rgba(0, 0, 0, 0.1);
+      }
+      .key small {
+        font-size: 9.5px;
+        font-weight: 600;
+        opacity: 0.7;
+        line-height: 1;
+        margin-top: 2px;
+      }
+      .key.num {
+        background: var(--surface-low);
+        color: var(--on-surface);
+      }
+      .key.op {
+        background: var(--tertiary-fixed);
+        color: var(--on-primary-container);
+      }
+      .key.fn {
+        background: var(--primary);
+        color: #fff;
+        font-size: 15px;
+      }
+      .key.soft {
+        background: #e6f4f2;
+        color: var(--primary);
+        font-size: 15px;
+      }
+      .key.warn {
+        background: var(--error-container);
+        color: var(--on-error-container);
+        font-size: 12.5px;
+        font-weight: 700;
+      }
+      .more-toggle {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: var(--surface-low);
+        color: var(--on-surface-variant);
+        font-weight: 600;
+        font-size: 13px;
+        padding: 10px;
+        border-radius: var(--r-sm);
+      }
+
+      /* static math */
+      .m {
+        font-style: italic;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.06em;
+        white-space: nowrap;
+      }
+      .frac {
+        display: inline-flex;
+        flex-direction: column;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 0.78em;
+        line-height: 1.25;
+        margin: 0 2px;
+      }
+      .frac .ft {
+        border-bottom: 1.5px solid currentColor;
+        padding: 0 5px;
+      }
+      .frac .fb2 {
+        padding: 0 5px;
+      }
+      .sqrt {
+        white-space: nowrap;
+      }
+      .sqrt .rad {
+        border-top: 1.5px solid currentColor;
+        padding: 1px 3px 0 1px;
+        margin-left: -1px;
+      }
+      sup {
+        font-size: 0.66em;
+      }
+      sub {
+        font-size: 0.66em;
+      }
+
+      /* admin */
+      .admin-shell {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+      }
+      .admin-side {
+        width: 225px;
+        flex: 0 0 auto;
+        background: var(--surface);
+        box-shadow: var(--sh1);
+        padding: 18px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .side-label {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--outline);
+        margin: 10px 12px 6px;
+      }
+      .side-item {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        border-radius: var(--r-md);
+        padding: 11px 14px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--on-surface-variant);
+      }
+      .side-item.on {
+        background: #e6f4f2;
+        color: var(--primary);
+      }
+      .admin-body {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        padding: 24px 28px;
+      }
+      .admin-body h2 {
+        font-size: 21px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        margin-bottom: 4px;
+      }
+      .panel-sub {
+        font-size: 14px;
+        color: var(--on-surface-variant);
+        margin-bottom: 20px;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 22px;
+      }
+      .stat-card {
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        box-shadow: var(--sh1);
+        padding: 18px 20px;
+      }
+      .stat-card .num {
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .stat-card .lbl {
+        font-size: 12.5px;
+        color: var(--on-surface-variant);
+        font-weight: 500;
+        margin-top: 2px;
+      }
+      .exam-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: var(--surface);
+        border-radius: var(--r-md);
+        box-shadow: var(--sh1);
+        padding: 15px 18px;
+        margin-bottom: 11px;
+      }
+      .er-info {
+        flex: 1;
+      }
+      .er-name {
+        font-weight: 600;
+        font-size: 15px;
+      }
+      .er-meta {
+        font-size: 12.5px;
+        color: var(--on-surface-variant);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 16px;
+      }
+      .form-grid .full {
+        grid-column: 1 / -1;
+      }
+      .f-label {
+        display: block;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--on-surface-variant);
+        margin-bottom: 5px;
+      }
+      .f-input,
+      .f-select,
+      .f-area {
+        width: 100%;
+        background: var(--surface-low);
+        border: 1.5px solid transparent;
+        border-radius: var(--r-sm);
+        padding: 11px 14px;
+        font-size: 14.5px;
+        font-family: var(--fb);
+        color: var(--on-surface);
+        display: block;
+      }
+      .f-area {
+        min-height: 84px;
+        line-height: 1.55;
+      }
+      .f-input.focus {
+        background: var(--surface);
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(0, 106, 99, 0.15);
+      }
+      .opt-edit-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 9px;
+      }
+      .opt-edit-row .ok2 {
+        width: 34px;
+        height: 34px;
+        border-radius: var(--r-full);
+        flex: 0 0 auto;
+        border: 1.5px solid var(--outline-variant);
+        background: var(--surface);
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--on-surface-variant);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .opt-edit-row .ok2.correct {
+        background: var(--secondary);
+        border-color: var(--secondary);
+        color: #fff;
+      }
+      .hint {
+        font-size: 12.5px;
+        color: var(--outline);
+        margin-top: 5px;
+        line-height: 1.5;
+      }
+      .json-area {
+        width: 100%;
+        min-height: 240px;
+        font-family: var(--fm);
+        font-size: 12.5px;
+        line-height: 1.6;
+        background: #243230;
+        color: #d9e6e2;
+        border-radius: var(--r-md);
+        padding: 16px;
+        white-space: pre;
+        overflow: hidden;
+      }
+      .json-area .jk {
+        color: #8ef4e9;
+      }
+      .json-area .js {
+        color: #abf4ac;
+      }
+      .json-area .jn {
+        color: #ffd060;
+      }
+      .val-line {
+        display: flex;
+        gap: 9px;
+        align-items: flex-start;
+        font-size: 13.5px;
+        padding: 5px 0;
+      }
+      .val-line.ok {
+        color: var(--secondary);
+      }
+      .val-line.bad {
+        color: var(--error);
+      }
+      .bank-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        box-shadow: var(--sh1);
+      }
+      .bank-table th {
+        text-align: left;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--on-surface-variant);
+        background: var(--surface-low);
+        padding: 12px 16px;
+      }
+      .bank-table td {
+        padding: 13px 16px;
+        font-size: 14px;
+        border-top: 1px solid var(--surface-high);
+      }
+
+      /* practice hub */
+      .hub-body {
+        flex: 1;
+        overflow: hidden;
+        padding: 22px 24px;
+      }
+      .hub-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .hub-head h2 {
+        font-size: 21px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .hub-filters {
+        display: flex;
+        gap: 8px;
+        margin-left: auto;
+      }
+      .filter-pill {
+        border: 1.5px solid var(--outline-variant);
+        background: var(--surface);
+        color: var(--on-surface-variant);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 7px 16px;
+        border-radius: var(--r-full);
+      }
+      .filter-pill.on {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+      }
+      .pkg-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .pkg-card {
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        box-shadow: var(--sh1);
+        padding: 20px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .pkg-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: space-between;
+      }
+      .pkg-body-chip {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        padding: 4px 11px;
+        border-radius: var(--r-full);
+      }
+      .pkg-title {
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .pkg-meta {
+        font-size: 12.5px;
+        color: var(--on-surface-variant);
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .pkg-size {
+        font-size: 12px;
+        color: var(--outline);
+      }
+      .dl-bar {
+        flex: 1;
+        height: 8px;
+        border-radius: var(--r-full);
+        background: var(--surface-container);
+        overflow: hidden;
+      }
+      .dl-bar > div {
+        height: 100%;
+        background: var(--secondary);
+        border-radius: var(--r-full);
+      }
+
+      /* modal overlay (static) */
+      .dim {
+        position: absolute;
+        inset: 0;
+        background: rgba(27, 28, 28, 0.45);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 8;
+      }
+      .modal {
+        background: var(--surface);
+        border-radius: var(--r-lg);
+        padding: 30px 32px;
+        width: 440px;
+        box-shadow: var(--sh2);
+      }
+      .modal h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .modal p {
+        font-size: 14.5px;
+        line-height: 1.6;
+        color: var(--on-surface-variant);
+        margin-bottom: 8px;
+      }
+      .modal-btns {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+      }
+      .modal-btns .mb {
+        flex: 1;
+        padding: 13px;
+        font-size: 15px;
+        font-weight: 700;
+        border-radius: var(--r-md);
+        text-align: center;
+      }
+      .mb.back {
+        background: var(--surface-container);
+        color: var(--on-surface);
+      }
+      .mb.danger {
+        background: var(--error);
+        color: #fff;
+      }
+
+      /* design system swatches */
+      .ds-card {
+        background: #10201d;
+        border: 1px solid rgba(77, 182, 172, 0.18);
+        border-radius: 18px;
+        padding: 30px 32px;
+        width: 1180px;
+      }
+      .ds-title {
+        font-size: 13px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #8ef4e9;
+        margin-bottom: 20px;
+      }
+      .sw-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .sw {
+        width: 128px;
+      }
+      .sw .swc {
+        height: 64px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .sw .swn {
+        font-size: 11.5px;
+        font-weight: 700;
+        color: #e8efed;
+        margin-top: 8px;
+      }
+      .sw .swv {
+        font-size: 11px;
+        color: #7fa39d;
+        font-family: var(--fm);
+      }
+      .type-row {
+        display: flex;
+        align-items: baseline;
+        gap: 26px;
+        padding: 13px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        color: #fff;
+      }
+      .type-meta {
+        width: 230px;
+        flex: 0 0 auto;
+        font-size: 11.5px;
+        color: #7fa39d;
+        font-family: var(--fm);
+      }
+      .comp-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 26px;
+        align-items: flex-start;
+      }
+      .comp-block {
+        background: var(--background);
+        border-radius: 14px;
+        padding: 22px 24px;
+        color: var(--on-surface);
+      }
+      .comp-label {
+        font-size: 10.5px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #7fa39d;
+        margin-bottom: 12px;
+      }
+      .comp-inner {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="board">
+      <div class="page-header">
+        <div class="brand-badge">
+          <span class="brand-dot"></span> EXAMSLING · CBT DESKTOP SUITE
+        </div>
+        <div class="page-title">Exam<span>Desk</span></div>
+        <div class="page-sub">
+          Computer-based testing for Nigerian schools — objective and theory
+          papers with full mathematical working, offline-first past-question
+          practice from JAMB · WAEC · NECO · GCE · BECE, and a complete admin
+          console. Soft Clinical design system · Inter · Desktop 1180px frames.
+        </div>
+        <div class="screens-count">
+          <span><b>14</b> Screens</span><span><b>5</b> Flows</span
+          ><span><b>1</b> Design System</span><span><b>20+</b> Components</span>
+        </div>
+      </div>
+
+      <!-- ═══════════════ 01 · ENTRY ═══════════════ -->
+      <div class="section-label">01 · Entry &amp; Home</div>
+      <div class="screens-grid">
+        <!-- S01 Candidate sign-in -->
+        <div class="screen-wrap">
+          <div class="screen-tag"><b>01</b> · Candidate Sign-In</div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — Sign In</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div
+              class="win-body"
+              style="
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(
+                  180deg,
+                  #f2faf9,
+                  var(--background) 55%
+                );
+              "
+            >
+              <div class="card" style="width: 430px; padding: 34px 36px">
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 13px;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <div
+                    class="brand-mark"
+                    style="width: 44px; height: 44px; font-size: 17px"
+                  >
+                    ED
+                  </div>
+                  <div>
+                    <div
+                      style="
+                        font-weight: 700;
+                        font-size: 18px;
+                        letter-spacing: -0.01em;
+                      "
+                    >
+                      EXAMSLING
+                    </div>
+                    <div
+                      style="
+                        font-size: 12.5px;
+                        color: var(--on-surface-variant);
+                      "
+                    >
+                      Greenfield College · Exam Centre 014
+                    </div>
+                  </div>
+                </div>
+                <p
+                  style="
+                    font-size: 13.5px;
+                    color: var(--on-surface-variant);
+                    margin: 10px 0 22px;
+                    line-height: 1.6;
+                  "
+                >
+                  Enter the exam number and access code on your slip. Ask the
+                  invigilator if you need help.
+                </p>
+                <label class="f-label">Exam number</label>
+                <div
+                  class="f-input focus"
+                  style="
+                    margin-bottom: 14px;
+                    font-size: 16px;
+                    letter-spacing: 0.06em;
+                  "
+                >
+                  GFC/2026/0<span style="color: var(--outline-variant)">|</span>
+                </div>
+                <label class="f-label">Access code</label>
+                <div
+                  class="f-input"
+                  style="
+                    margin-bottom: 22px;
+                    color: var(--outline);
+                    letter-spacing: 0.35em;
+                  "
+                >
+                  ••••••
+                </div>
+                <div
+                  class="btn primary"
+                  style="width: 100%; padding: 14px; font-size: 15.5px"
+                >
+                  Sign in
+                </div>
+                <div style="text-align: center; margin-top: 14px">
+                  <span class="chip green"
+                    >● This machine is registered to Seat 14</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S02 Home -->
+        <div class="screen-wrap">
+          <div class="screen-tag"><b>02</b> · Home — Choose Mode</div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — Home</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">EXAMSLING</div>
+                    <div class="brand-t2">Welcome, ADEYEMI O. · Seat 14</div>
+                  </div>
+                </div>
+                <div class="spacer"></div>
+                <span class="chip green">● Question bank synced</span>
+                <span class="chip">v1.0 · offline ready</span>
+              </div>
+              <div
+                style="
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  padding: 30px;
+                "
+              >
+                <div
+                  style="
+                    font-size: 26px;
+                    font-weight: 600;
+                    letter-spacing: -0.01em;
+                    margin-bottom: 6px;
+                  "
+                >
+                  What would you like to do?
+                </div>
+                <div
+                  style="
+                    font-size: 14px;
+                    color: var(--on-surface-variant);
+                    margin-bottom: 30px;
+                  "
+                >
+                  Practise national past questions, or sit the exam your school
+                  has set.
+                </div>
+                <div style="display: flex; gap: 20px">
+                  <div
+                    class="card"
+                    style="width: 280px; border: 1.5px solid transparent"
+                  >
+                    <div
+                      style="
+                        width: 46px;
+                        height: 46px;
+                        border-radius: 12px;
+                        background: #e6f4f2;
+                        color: var(--primary);
+                        font-size: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 10px;
+                      "
+                    >
+                      ⬇
+                    </div>
+                    <div
+                      style="
+                        font-weight: 600;
+                        font-size: 16.5px;
+                        margin-bottom: 6px;
+                      "
+                    >
+                      Exam Practice
+                    </div>
+                    <div
+                      style="
+                        font-size: 13px;
+                        color: var(--on-surface-variant);
+                        line-height: 1.55;
+                        margin-bottom: 12px;
+                      "
+                    >
+                      JAMB, WAEC, NECO, GCE &amp; BECE past questions — download
+                      once, practise offline.
+                    </div>
+                    <div
+                      style="
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: var(--primary);
+                      "
+                    >
+                      Open practice library →
+                    </div>
+                  </div>
+                  <div
+                    class="card"
+                    style="
+                      width: 280px;
+                      border: 1.5px solid var(--primary-container);
+                      box-shadow: var(--sh2);
+                    "
+                  >
+                    <div
+                      style="
+                        width: 46px;
+                        height: 46px;
+                        border-radius: 12px;
+                        background: #eef9ee;
+                        color: var(--secondary);
+                        font-size: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 10px;
+                      "
+                    >
+                      ✓
+                    </div>
+                    <div
+                      style="
+                        font-weight: 600;
+                        font-size: 16.5px;
+                        margin-bottom: 6px;
+                      "
+                    >
+                      Internal Exam — Objective
+                    </div>
+                    <div
+                      style="
+                        font-size: 13px;
+                        color: var(--on-surface-variant);
+                        line-height: 1.55;
+                        margin-bottom: 12px;
+                      "
+                    >
+                      English Objective Paper 1 is
+                      <b style="color: var(--secondary)">live now</b>. 60
+                      questions · 30 minutes.
+                    </div>
+                    <div
+                      style="
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: var(--primary);
+                      "
+                    >
+                      Start paper →
+                    </div>
+                  </div>
+                  <div class="card" style="width: 280px">
+                    <div
+                      style="
+                        width: 46px;
+                        height: 46px;
+                        border-radius: 12px;
+                        background: var(--flag-container);
+                        color: #7a6210;
+                        font-size: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 10px;
+                      "
+                    >
+                      ∑
+                    </div>
+                    <div
+                      style="
+                        font-weight: 600;
+                        font-size: 16.5px;
+                        margin-bottom: 6px;
+                      "
+                    >
+                      Internal Exam — Theory
+                    </div>
+                    <div
+                      style="
+                        font-size: 13px;
+                        color: var(--on-surface-variant);
+                        line-height: 1.55;
+                        margin-bottom: 12px;
+                      "
+                    >
+                      Maths Theory Paper 2 · show full working with the
+                      on-screen maths keypad.
+                    </div>
+                    <div
+                      style="
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: var(--outline);
+                      "
+                    >
+                      Locked until activated
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ 02 · PRACTICE ═══════════════ -->
+      <div class="section-label">
+        02 · Exam Practice — External Question Bank
+      </div>
+      <div class="screens-grid">
+        <!-- S03 Practice library -->
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>03</b> · Practice Library — Download States
+          </div>
+          <div class="window h640">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — Practice Library</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Exam Practice Library</div>
+                    <div class="brand-t2">
+                      Packages from the external question bank
+                    </div>
+                  </div>
+                </div>
+                <span class="mode-chip">Practice Mode</span>
+                <div class="spacer"></div>
+                <span class="chip green">● Connected to question bank</span>
+                <span class="ghost-btn">← Home</span>
+              </div>
+              <div class="hub-body">
+                <div class="hub-head">
+                  <h2>Past Question Packages</h2>
+                  <div class="hub-filters">
+                    <span class="filter-pill on">All</span
+                    ><span class="filter-pill">JAMB</span
+                    ><span class="filter-pill">WAEC</span
+                    ><span class="filter-pill">NECO</span
+                    ><span class="filter-pill">GCE</span
+                    ><span class="filter-pill">BECE</span>
+                  </div>
+                </div>
+                <div class="pkg-grid">
+                  <div class="pkg-card">
+                    <div class="pkg-top">
+                      <span
+                        class="pkg-body-chip"
+                        style="background: #e6f4f2; color: #006a63"
+                        >JAMB</span
+                      ><span class="pkg-size">310 KB</span>
+                    </div>
+                    <div class="pkg-title">Mathematics · 2025</div>
+                    <div class="pkg-meta">
+                      <span>40 questions</span><span>JSON + assets</span>
+                    </div>
+                    <div><span class="btn primary sm">⬇ Download</span></div>
+                  </div>
+                  <div
+                    class="pkg-card"
+                    style="border: 1.5px solid var(--primary-container)"
+                  >
+                    <div class="pkg-top">
+                      <span
+                        class="pkg-body-chip"
+                        style="background: #eef9ee; color: #286b33"
+                        >WAEC</span
+                      ><span class="pkg-size">1.9 MB</span>
+                    </div>
+                    <div class="pkg-title">Biology (with diagrams) · 2024</div>
+                    <div class="pkg-meta">
+                      <span>50 questions</span
+                      ><span>38 images · all ≤ 50 KB</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center">
+                      <div class="dl-bar"><div style="width: 64%"></div></div>
+                      <span
+                        class="pkg-size"
+                        style="font-weight: 700; color: var(--secondary)"
+                        >64%</span
+                      >
+                    </div>
+                  </div>
+                  <div class="pkg-card">
+                    <div class="pkg-top">
+                      <span
+                        class="pkg-body-chip"
+                        style="background: #e6f4f2; color: #006a63"
+                        >JAMB</span
+                      ><span class="pkg-size">280 KB</span>
+                    </div>
+                    <div class="pkg-title">Use of English · 2025</div>
+                    <div class="pkg-meta">
+                      <span>60 questions</span
+                      ><span>Comprehension passages</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center">
+                      <span class="btn primary sm">▶ Practise</span
+                      ><span class="chip green">✓ On this device</span>
+                    </div>
+                  </div>
+                  <div class="pkg-card">
+                    <div class="pkg-top">
+                      <span
+                        class="pkg-body-chip"
+                        style="background: #eef9ee; color: #286b33"
+                        >WAEC</span
+                      ><span class="pkg-size">540 KB</span>
+                    </div>
+                    <div class="pkg-title">
+                      Mathematics (Obj + Theory) · 2024
+                    </div>
+                    <div class="pkg-meta">
+                      <span>63 questions</span><span>Rubrics included</span>
+                    </div>
+                    <div><span class="btn primary sm">⬇ Download</span></div>
+                  </div>
+                  <div class="pkg-card">
+                    <div class="pkg-top">
+                      <span
+                        class="pkg-body-chip"
+                        style="background: #fff0c9; color: #7a6210"
+                        >NECO</span
+                      ><span class="pkg-size">760 KB</span>
+                    </div>
+                    <div class="pkg-title">Chemistry · 2023</div>
+                    <div class="pkg-meta">
+                      <span>60 questions</span><span>JSON + assets</span>
+                    </div>
+                    <div><span class="btn primary sm">⬇ Download</span></div>
+                  </div>
+                  <div class="pkg-card">
+                    <div class="pkg-top">
+                      <span
+                        class="pkg-body-chip"
+                        style="background: #ece9f7; color: #4a3d7a"
+                        >GCE</span
+                      ><span class="pkg-size">880 KB</span>
+                    </div>
+                    <div class="pkg-title">Physics · 2023</div>
+                    <div class="pkg-meta">
+                      <span>50 questions</span><span>Offline ready</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center">
+                      <span class="btn primary sm">▶ Practise</span
+                      ><span class="chip green">✓ On this device</span>
+                    </div>
+                  </div>
+                </div>
+                <p
+                  style="
+                    font-size: 12.5px;
+                    color: var(--outline);
+                    margin-top: 16px;
+                    line-height: 1.6;
+                  "
+                >
+                  Packages download as JSON (questions · passages · rubrics)
+                  plus images, verified by checksum, then cached in local SQLite
+                  — practice works fully offline afterwards.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S04 Practice session with solution -->
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>04</b> · Practice Session — Instant Solution
+          </div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">
+                EXAMSLING — JAMB Mathematics 2025 · Practice
+              </div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">JAMB Mathematics 2025 — Practice</div>
+                    <div class="brand-t2">Question 7 of 40 · Untimed</div>
+                  </div>
+                </div>
+                <span class="mode-chip">Practice Mode</span>
+                <div class="spacer"></div>
+                <span class="chip teal">Score so far: 5 / 6</span>
+              </div>
+              <div class="exam-main">
+                <div class="work-col">
+                  <div class="q-card">
+                    <div class="q-top">
+                      <span class="q-number">QUESTION 7 OF 40</span
+                      ><span class="chip">2 marks</span>
+                    </div>
+                    <div class="q-body">
+                      <div class="q-text">
+                        Simplify
+                        <span class="m"
+                          ><span class="frac"
+                            ><span class="ft">3</span
+                            ><span class="fb2">4</span></span
+                          >
+                          ÷
+                          <span class="frac"
+                            ><span class="ft">1</span
+                            ><span class="fb2">2</span></span
+                          >
+                          +
+                          <span class="frac"
+                            ><span class="ft">5</span
+                            ><span class="fb2">8</span></span
+                          ></span
+                        >, leaving your answer as a fraction in its lowest
+                        terms.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="opt-list">
+                    <div
+                      class="opt sel"
+                      style="
+                        border-color: var(--secondary);
+                        background: #f4fbf4;
+                        box-shadow: 0 0 0 4px rgba(40, 107, 51, 0.14);
+                      "
+                    >
+                      <span
+                        class="ok"
+                        style="background: var(--secondary); color: #fff"
+                        >A</span
+                      ><span class="m"
+                        ><span class="frac"
+                          ><span class="ft">17</span
+                          ><span class="fb2">8</span></span
+                        ></span
+                      ><span class="chip green" style="margin-left: auto"
+                        >✓ Correct</span
+                      >
+                    </div>
+                    <div class="opt">
+                      <span class="ok">B</span
+                      ><span class="m"
+                        ><span class="frac"
+                          ><span class="ft">13</span
+                          ><span class="fb2">8</span></span
+                        ></span
+                      >
+                    </div>
+                    <div class="opt">
+                      <span class="ok">C</span
+                      ><span class="m"
+                        >2<span class="frac"
+                          ><span class="ft">1</span
+                          ><span class="fb2">8</span></span
+                        ></span
+                      >
+                    </div>
+                    <div class="opt">
+                      <span class="ok">D</span
+                      ><span class="m"
+                        ><span class="frac"
+                          ><span class="ft">11</span
+                          ><span class="fb2">8</span></span
+                        ></span
+                      >
+                    </div>
+                    <div
+                      class="card"
+                      style="
+                        border-left: 5px solid var(--secondary);
+                        padding: 16px 20px;
+                      "
+                    >
+                      <div
+                        style="
+                          font-size: 12px;
+                          font-weight: 700;
+                          letter-spacing: 0.08em;
+                          text-transform: uppercase;
+                          color: var(--secondary);
+                          margin-bottom: 6px;
+                        "
+                      >
+                        Worked solution
+                      </div>
+                      <div style="font-size: 15px; line-height: 1.7">
+                        <span class="m"
+                          ><span class="frac"
+                            ><span class="ft">3</span
+                            ><span class="fb2">4</span></span
+                          >
+                          ÷
+                          <span class="frac"
+                            ><span class="ft">1</span
+                            ><span class="fb2">2</span></span
+                          >
+                          =
+                          <span class="frac"
+                            ><span class="ft">3</span
+                            ><span class="fb2">4</span></span
+                          >
+                          ×
+                          <span class="frac"
+                            ><span class="ft">2</span
+                            ><span class="fb2">1</span></span
+                          >
+                          =
+                          <span class="frac"
+                            ><span class="ft">3</span
+                            ><span class="fb2">2</span></span
+                          ></span
+                        >
+                        &nbsp;then&nbsp;
+                        <span class="m"
+                          ><span class="frac"
+                            ><span class="ft">12</span
+                            ><span class="fb2">8</span></span
+                          >
+                          +
+                          <span class="frac"
+                            ><span class="ft">5</span
+                            ><span class="fb2">8</span></span
+                          >
+                          =
+                          <span class="frac"
+                            ><span class="ft">17</span
+                            ><span class="fb2">8</span></span
+                          ></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-nav">
+                <span class="nav-btn prev">◀ Previous</span>
+                <div class="qmap">
+                  <span class="qdot answered">5</span
+                  ><span class="qdot answered">6</span
+                  ><span class="qdot current">7</span><span class="qdot">8</span
+                  ><span class="qdot">9</span><span class="qdot">10</span>
+                </div>
+                <span class="nav-btn next">Next ▶</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ 03 · OBJECTIVE ═══════════════ -->
+      <div class="section-label">03 · Internal Exam — Objective</div>
+      <div class="screens-grid">
+        <!-- S05 Objective with diagram -->
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>05</b> · Objective — Question with Diagram
+          </div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — Biology Objective Paper 1</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Biology — Objective Paper 1</div>
+                    <div class="brand-t2">Candidate ADEYEMI O. · Seat 14</div>
+                  </div>
+                </div>
+                <span class="mode-chip">Internal Exam</span>
+                <div class="spacer"></div>
+                <span class="save-pill"
+                  ><span class="dot"></span>All work saved</span
+                >
+                <span class="timer">27:14</span>
+              </div>
+              <div class="exam-main">
+                <div class="work-col">
+                  <div class="q-card">
+                    <div class="q-top">
+                      <span class="q-number">QUESTION 12 OF 50</span
+                      ><span class="chip">2 marks</span>
+                      <div class="q-actions">
+                        <span class="ghost-btn">⚑ Flag</span>
+                      </div>
+                    </div>
+                    <div class="q-body">
+                      <div class="q-text">
+                        The part labelled <b>II</b> in Fig. 1 is responsible for
+                      </div>
+                      <figure class="q-figure">
+                        <svg
+                          width="195"
+                          height="146"
+                          viewBox="0 0 220 170"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect width="220" height="170" fill="#ffffff" />
+                          <rect
+                            x="30"
+                            y="20"
+                            width="160"
+                            height="130"
+                            rx="14"
+                            fill="none"
+                            stroke="#1b1c1c"
+                            stroke-width="2.5"
+                          />
+                          <rect
+                            x="42"
+                            y="32"
+                            width="136"
+                            height="106"
+                            rx="10"
+                            fill="none"
+                            stroke="#1b1c1c"
+                            stroke-width="1.5"
+                          />
+                          <circle
+                            cx="110"
+                            cy="85"
+                            r="26"
+                            fill="none"
+                            stroke="#1b1c1c"
+                            stroke-width="2"
+                          />
+                          <circle cx="110" cy="85" r="8" fill="#1b1c1c" />
+                          <ellipse
+                            cx="62"
+                            cy="60"
+                            rx="11"
+                            ry="7"
+                            fill="none"
+                            stroke="#006a63"
+                            stroke-width="1.5"
+                          />
+                          <ellipse
+                            cx="158"
+                            cy="118"
+                            rx="11"
+                            ry="7"
+                            fill="none"
+                            stroke="#006a63"
+                            stroke-width="1.5"
+                          />
+                          <text
+                            x="8"
+                            y="24"
+                            font-family="Inter"
+                            font-size="12"
+                            fill="#1b1c1c"
+                          >
+                            I
+                          </text>
+                          <line
+                            x1="16"
+                            y1="22"
+                            x2="32"
+                            y2="26"
+                            stroke="#6d7a77"
+                            stroke-width="1"
+                          />
+                          <text
+                            x="6"
+                            y="64"
+                            font-family="Inter"
+                            font-size="12"
+                            fill="#1b1c1c"
+                          >
+                            II
+                          </text>
+                          <line
+                            x1="18"
+                            y1="60"
+                            x2="43"
+                            y2="50"
+                            stroke="#6d7a77"
+                            stroke-width="1"
+                          />
+                          <text
+                            x="104"
+                            y="50"
+                            font-family="Inter"
+                            font-size="12"
+                            fill="#1b1c1c"
+                          >
+                            III
+                          </text>
+                          <text
+                            x="196"
+                            y="122"
+                            font-family="Inter"
+                            font-size="12"
+                            fill="#1b1c1c"
+                          >
+                            IV
+                          </text>
+                        </svg>
+                        <figcaption>
+                          Fig. 1 — A plant cell (asset · 38 KB)
+                        </figcaption>
+                      </figure>
+                    </div>
+                  </div>
+                  <div class="opt-list">
+                    <div class="opt">
+                      <span class="ok">A</span><span>photosynthesis</span>
+                    </div>
+                    <div class="opt">
+                      <span class="ok">B</span><span>protein synthesis</span>
+                    </div>
+                    <div class="opt sel">
+                      <span class="ok">C</span
+                      ><span
+                        >controlling movement of substances in and out of the
+                        cell</span
+                      >
+                    </div>
+                    <div class="opt">
+                      <span class="ok">D</span><span>storage of cell sap</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-nav">
+                <span class="nav-btn prev">◀ Previous</span>
+                <div class="qmap">
+                  <span class="qdot answered">10</span
+                  ><span class="qdot answered flagged">11</span
+                  ><span class="qdot current answered">12</span
+                  ><span class="qdot">13</span><span class="qdot">14</span
+                  ><span class="qdot">15</span>
+                </div>
+                <span class="nav-btn next">Next ▶</span>
+                <span class="nav-btn submit">Submit paper</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S06 Objective comprehension -->
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>06</b> · Objective — Comprehension Split Pane
+          </div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — English Objective Paper 1</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">
+                      English Language — Objective Paper 1
+                    </div>
+                    <div class="brand-t2">Candidate ADEYEMI O. · Seat 14</div>
+                  </div>
+                </div>
+                <span class="mode-chip">Internal Exam</span>
+                <div class="spacer"></div>
+                <span class="save-pill saving"
+                  ><span class="dot"></span>Saving…</span
+                >
+                <span class="timer">18:42</span>
+              </div>
+              <div class="exam-main">
+                <div class="passage-pane">
+                  <h4>Passage A</h4>
+                  <div class="pass-instr">
+                    Read the passage carefully and answer questions 11 to 16.
+                    The passage stays on screen while the questions change.
+                  </div>
+                  <div class="pass-text">
+                    <p>
+                      Adamu rose before the first cock crowed. The harmattan
+                      wind had laid a fine red dust over the compound, and he
+                      swept it slowly, thinking of the letter that had arrived
+                      the night before. His brother wrote of the city — of
+                      bright lights and crowded buses — but Adamu read between
+                      the lines a loneliness that no lamp could brighten.
+                    </p>
+                    <p>
+                      By noon he had made his decision. He would not follow his
+                      brother. The farm was hard, but it was his, and a man who
+                      owns his labour, he thought, owns his life.
+                    </p>
+                  </div>
+                </div>
+                <div class="work-col">
+                  <div class="q-card">
+                    <div class="q-top">
+                      <span class="q-number">QUESTION 12 OF 60</span
+                      ><span class="chip">2 marks</span>
+                      <div class="q-actions">
+                        <span class="ghost-btn flag-on">⚑ Flagged</span>
+                      </div>
+                    </div>
+                    <div class="q-body">
+                      <div class="q-text">
+                        From the passage, Adamu's attitude to his brother's life
+                        in the city can best be described as
+                      </div>
+                    </div>
+                  </div>
+                  <div class="opt-list">
+                    <div class="opt">
+                      <span class="ok">A</span><span>envious admiration</span>
+                    </div>
+                    <div class="opt sel">
+                      <span class="ok">B</span><span>quiet pity</span>
+                    </div>
+                    <div class="opt">
+                      <span class="ok">C</span><span>open hostility</span>
+                    </div>
+                    <div class="opt">
+                      <span class="ok">D</span
+                      ><span>complete indifference</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-nav">
+                <span class="nav-btn prev">◀ Previous</span>
+                <div class="qmap">
+                  <span class="qdot answered">10</span
+                  ><span class="qdot answered">11</span
+                  ><span class="qdot current answered flagged">12</span
+                  ><span class="qdot">13</span><span class="qdot">14</span
+                  ><span class="qdot">15</span>
+                </div>
+                <span class="nav-btn next">Next ▶</span>
+                <span class="nav-btn submit">Submit paper</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ 04 · THEORY ═══════════════ -->
+      <div class="section-label">
+        04 · Internal Exam — Theory (Maths Working)
+      </div>
+      <div class="screens-grid">
+        <!-- S07 Theory main -->
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>07</b> · Theory — Maths Working &amp; Single-Screen Keypad
+          </div>
+          <div class="window h640">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — Mathematics Theory Paper 2</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Mathematics — Theory Paper 2</div>
+                    <div class="brand-t2">Candidate ADEYEMI O. · Seat 14</div>
+                  </div>
+                </div>
+                <span class="mode-chip">Internal Exam</span>
+                <div class="spacer"></div>
+                <span class="save-pill"
+                  ><span class="dot"></span>All work saved</span
+                >
+                <span class="timer">38:05</span>
+              </div>
+              <div class="exam-main">
+                <div class="work-col">
+                  <div class="q-card">
+                    <div class="q-top">
+                      <span class="q-number">QUESTION 1 OF 5</span
+                      ><span class="chip">6 marks</span
+                      ><span class="chip teal">Calculator allowed</span>
+                      <div class="q-actions">
+                        <span class="ghost-btn">⚑ Flag</span
+                        ><span class="ghost-btn">Hide ▴</span>
+                      </div>
+                    </div>
+                    <div class="q-body">
+                      <div class="q-text">
+                        Solve the equation
+                        <span class="m">2x<sup>2</sup> − 5x − 3 = 0</span> using
+                        the quadratic formula. <b>Show your working clearly.</b>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sheet-head">
+                    <span class="sheet-label">Your working</span
+                    ><span class="sheet-tip"
+                      >Tap a line, then use the keypad — show every step</span
+                    >
+                  </div>
+                  <div
+                    class="sheet"
+                    style="display: flex; flex-direction: column"
+                  >
+                    <div class="step-row">
+                      <span class="step-tag">(i)</span>
+                      <div class="mf">
+                        <span class="m"
+                          >x =
+                          <span class="frac"
+                            ><span class="ft"
+                              >−b ±
+                              <span class="sqrt"
+                                >√<span class="rad"
+                                  >b<sup>2</sup> − 4ac</span
+                                ></span
+                              ></span
+                            ><span class="fb2">2a</span></span
+                          ></span
+                        >
+                      </div>
+                      <span class="step-del">✕</span>
+                    </div>
+                    <div class="step-row">
+                      <span class="step-tag">(ii)</span>
+                      <div class="mf">
+                        <span class="m"
+                          >x =
+                          <span class="frac"
+                            ><span class="ft"
+                              >5 ±
+                              <span class="sqrt"
+                                >√<span class="rad"
+                                  >(−5)<sup>2</sup> − 4(2)(−3)</span
+                                ></span
+                              ></span
+                            ><span class="fb2">2(2)</span></span
+                          ></span
+                        >
+                      </div>
+                      <span class="step-del">✕</span>
+                    </div>
+                    <div class="step-row">
+                      <span class="step-tag">(iii)</span>
+                      <div class="mf focus">
+                        <span class="m"
+                          >x =
+                          <span class="frac"
+                            ><span class="ft"
+                              >5 ±
+                              <span class="sqrt"
+                                >√<span class="rad">49</span></span
+                              ></span
+                            ><span class="fb2">4</span></span
+                          >
+                          =
+                          <span class="frac"
+                            ><span class="ft">5 ± 7</span
+                            ><span class="fb2">4</span></span
+                          ></span
+                        ><span class="caret"></span>
+                      </div>
+                      <span class="step-del">✕</span>
+                    </div>
+                    <div class="add-step">＋ Add another line of working</div>
+                    <div class="final-block">
+                      <div class="final-label">Final answer</div>
+                      <div class="step-row">
+                        <div class="mf final" style="color: var(--outline)">
+                          Type your final answer here
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <aside class="pad-col">
+                  <div class="pad-head">
+                    <span class="pad-title">Maths Keypad</span
+                    ><span class="pad-sub"
+                      >Types into the line you last tapped</span
+                    >
+                  </div>
+                  <div class="pad-zone-label first">
+                    Common — always visible
+                  </div>
+                  <div class="grid6">
+                    <span class="key fn">▭⁄▭<small>fraction</small></span
+                    ><span class="key fn">√▭<small>root</small></span
+                    ><span class="key fn">x²<small>squared</small></span
+                    ><span class="key fn">xⁿ<small>power</small></span
+                    ><span class="key soft">(</span
+                    ><span class="key soft">)</span>
+                    <span class="key soft">π</span
+                    ><span class="key soft">±</span
+                    ><span class="key soft">x</span
+                    ><span class="key soft">y</span
+                    ><span class="key soft">◀</span
+                    ><span class="key soft">▶</span>
+                  </div>
+                  <div class="pad-zone-label">Numbers &amp; Operators</div>
+                  <div class="grid5">
+                    <span class="key num">7</span><span class="key num">8</span
+                    ><span class="key num">9</span><span class="key op">÷</span
+                    ><span class="key warn">⌫</span>
+                    <span class="key num">4</span><span class="key num">5</span
+                    ><span class="key num">6</span><span class="key op">×</span
+                    ><span class="key warn">CLEAR</span>
+                    <span class="key num">1</span><span class="key num">2</span
+                    ><span class="key num">3</span><span class="key op">−</span
+                    ><span class="key op">=</span> <span class="key num">0</span
+                    ><span class="key num">.</span><span class="key num">%</span
+                    ><span class="key op">+</span><span></span>
+                  </div>
+                  <div class="more-toggle">More functions ▾</div>
+                </aside>
+              </div>
+              <div class="footer-nav">
+                <span class="nav-btn prev" style="opacity: 0.4"
+                  >◀ Previous</span
+                >
+                <div class="qmap">
+                  <span class="qdot current answered">1</span
+                  ><span class="qdot">2</span><span class="qdot">3</span
+                  ><span class="qdot">4</span><span class="qdot">5</span>
+                </div>
+                <span class="nav-btn next">Next ▶</span>
+                <span class="nav-btn submit">Submit paper</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S08 Theory expanded keypad + figure + collapsed question -->
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>08</b> · Theory — Collapsed Question · More Functions Open
+          </div>
+          <div class="window h640">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — Mathematics Theory Paper 2</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Mathematics — Theory Paper 2</div>
+                    <div class="brand-t2">Candidate ADEYEMI O. · Seat 14</div>
+                  </div>
+                </div>
+                <span class="mode-chip">Internal Exam</span>
+                <div class="spacer"></div>
+                <span class="save-pill"
+                  ><span class="dot"></span>All work saved</span
+                >
+                <span class="timer low">04:21</span>
+              </div>
+              <div class="exam-main">
+                <div class="work-col">
+                  <div class="q-card" style="padding-bottom: 12px">
+                    <div class="q-top">
+                      <span class="q-number">QUESTION 3 OF 5</span
+                      ><span class="chip">6 marks</span
+                      ><span class="chip teal">Calculator allowed</span>
+                      <div class="q-actions">
+                        <span class="ghost-btn flag-on">⚑ Flagged</span
+                        ><span class="ghost-btn">Show ▾</span>
+                      </div>
+                    </div>
+                    <div
+                      class="q-body"
+                      style="
+                        max-height: 26px;
+                        overflow: hidden;
+                        -webkit-mask-image: linear-gradient(
+                          180deg,
+                          #000 35%,
+                          transparent
+                        );
+                        mask-image: linear-gradient(
+                          180deg,
+                          #000 35%,
+                          transparent
+                        );
+                      "
+                    >
+                      <div class="q-text">
+                        In the right-angled triangle shown in <b>Fig. 1</b>,
+                        calculate the length <span class="m">x</span> and the
+                        angle <span class="m">θ</span>, correct to one decimal
+                        place…
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sheet-head">
+                    <span class="sheet-label">Your working</span
+                    ><span class="sheet-tip"
+                      >Question collapsed — more room for your steps</span
+                    >
+                  </div>
+                  <div
+                    class="sheet"
+                    style="display: flex; flex-direction: column"
+                  >
+                    <div class="step-row">
+                      <span class="step-tag">(i)</span>
+                      <div class="mf">
+                        <span class="m"
+                          >x<sup>2</sup> + 12<sup>2</sup> = 15<sup>2</sup></span
+                        >
+                      </div>
+                      <span class="step-del">✕</span>
+                    </div>
+                    <div class="step-row">
+                      <span class="step-tag">(ii)</span>
+                      <div class="mf">
+                        <span class="m">x<sup>2</sup> = 225 − 144 = 81</span>
+                      </div>
+                      <span class="step-del">✕</span>
+                    </div>
+                    <div class="step-row">
+                      <span class="step-tag">(iii)</span>
+                      <div class="mf">
+                        <span class="m"
+                          >x =
+                          <span class="sqrt">√<span class="rad">81</span></span>
+                          = 9 cm</span
+                        >
+                      </div>
+                      <span class="step-del">✕</span>
+                    </div>
+                    <div class="step-row">
+                      <span class="step-tag">(iv)</span>
+                      <div class="mf focus">
+                        <span class="m"
+                          >tan θ =
+                          <span class="frac"
+                            ><span class="ft">9</span
+                            ><span class="fb2">12</span></span
+                          ></span
+                        ><span class="caret"></span>
+                      </div>
+                      <span class="step-del">✕</span>
+                    </div>
+                    <div class="add-step">＋ Add another line of working</div>
+                    <div class="final-block">
+                      <div class="final-label">Final answer</div>
+                      <div class="step-row">
+                        <div class="mf final">
+                          <span class="m">x = 9 cm,&nbsp; θ ≈ 36.9°</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <aside class="pad-col">
+                  <div class="pad-head">
+                    <span class="pad-title">Maths Keypad</span
+                    ><span class="pad-sub"
+                      >Types into the line you last tapped</span
+                    >
+                  </div>
+                  <div class="pad-zone-label first">
+                    Common — always visible
+                  </div>
+                  <div class="grid6">
+                    <span class="key fn">▭⁄▭<small>fraction</small></span
+                    ><span class="key fn">√▭<small>root</small></span
+                    ><span class="key fn">x²<small>squared</small></span
+                    ><span class="key fn">xⁿ<small>power</small></span
+                    ><span class="key soft">(</span
+                    ><span class="key soft">)</span>
+                    <span class="key soft">π</span
+                    ><span class="key soft">±</span
+                    ><span class="key soft">x</span
+                    ><span class="key soft">y</span
+                    ><span class="key soft">◀</span
+                    ><span class="key soft">▶</span>
+                  </div>
+                  <div class="pad-zone-label">Numbers &amp; Operators</div>
+                  <div class="grid5">
+                    <span class="key num">7</span><span class="key num">8</span
+                    ><span class="key num">9</span><span class="key op">÷</span
+                    ><span class="key warn">⌫</span>
+                    <span class="key num">4</span><span class="key num">5</span
+                    ><span class="key num">6</span><span class="key op">×</span
+                    ><span class="key warn">CLEAR</span>
+                    <span class="key num">1</span><span class="key num">2</span
+                    ><span class="key num">3</span><span class="key op">−</span
+                    ><span class="key op">=</span> <span class="key num">0</span
+                    ><span class="key num">.</span><span class="key num">%</span
+                    ><span class="key op">+</span><span></span>
+                  </div>
+                  <div
+                    class="more-toggle"
+                    style="background: #e6f4f2; color: var(--primary)"
+                  >
+                    Fewer functions ▴
+                  </div>
+                  <div class="grid6" style="margin-top: 8px">
+                    <span class="key soft">sin</span
+                    ><span class="key soft">cos</span
+                    ><span class="key soft">tan</span
+                    ><span class="key soft">log</span
+                    ><span class="key soft">log₁₀</span
+                    ><span class="key soft">ln</span>
+                    <span class="key fn">ⁿ√▭<small>nth root</small></span
+                    ><span class="key fn">|x|</span
+                    ><span class="key soft">θ</span
+                    ><span class="key soft">°</span
+                    ><span class="key soft">∴</span
+                    ><span class="key soft">≈</span>
+                    <span class="key soft">≤</span
+                    ><span class="key soft">≥</span
+                    ><span class="key soft">≠</span
+                    ><span class="key soft">∞</span
+                    ><span class="key soft">Δ</span
+                    ><span class="key soft">₦</span>
+                  </div>
+                </aside>
+              </div>
+              <div class="footer-nav">
+                <span class="nav-btn prev">◀ Previous</span>
+                <div class="qmap">
+                  <span class="qdot answered">1</span
+                  ><span class="qdot answered">2</span
+                  ><span class="qdot current answered flagged">3</span
+                  ><span class="qdot">4</span><span class="qdot">5</span>
+                </div>
+                <span class="nav-btn next">Next ▶</span>
+                <span class="nav-btn submit">Submit paper</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S09 Submit modal -->
+        <div class="screen-wrap">
+          <div class="screen-tag"><b>09</b> · Theory — Submit Confirmation</div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — Mathematics Theory Paper 2</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body" style="filter: none">
+              <div class="appbar" style="filter: blur(0)">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Mathematics — Theory Paper 2</div>
+                    <div class="brand-t2">Candidate ADEYEMI O. · Seat 14</div>
+                  </div>
+                </div>
+                <span class="mode-chip">Internal Exam</span>
+                <div class="spacer"></div>
+                <span class="save-pill"
+                  ><span class="dot"></span>All work saved</span
+                >
+                <span class="timer">12:50</span>
+              </div>
+              <div style="flex: 1; background: var(--background)"></div>
+              <div class="dim">
+                <div class="modal">
+                  <h3>Submit your paper?</h3>
+                  <p>
+                    You have answered
+                    <b style="color: var(--on-surface)">4 of 5</b> questions.
+                    <b style="color: var(--error)"
+                      >1 question is still blank.</b
+                    >
+                  </p>
+                  <p>Once you submit, you cannot change your answers.</p>
+                  <div class="modal-btns">
+                    <span class="mb back">Go back</span
+                    ><span class="mb danger">Yes, submit</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ 05 · ADMIN ═══════════════ -->
+      <div class="section-label">05 · Admin Console</div>
+      <div class="screens-grid">
+        <!-- S10 Dashboard -->
+        <div class="screen-wrap">
+          <div class="screen-tag"><b>10</b> · Admin — Dashboard</div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">EXAMSLING — Admin Console</div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Admin Console</div>
+                    <div class="brand-t2">
+                      Signed in as MR. OKAFOR · Exam Officer
+                    </div>
+                  </div>
+                </div>
+                <span class="mode-chip amber">Admin</span>
+                <div class="spacer"></div>
+                <span class="ghost-btn">← Exit console</span>
+              </div>
+              <div class="admin-shell">
+                <nav class="admin-side">
+                  <div class="side-label">Manage</div>
+                  <span class="side-item on">▦ &nbsp;Dashboard</span>
+                  <span class="side-item">▶ &nbsp;Active Exams</span>
+                  <div class="side-label">Questions</div>
+                  <span class="side-item">＋ &nbsp;Add Question</span>
+                  <span class="side-item">⤓ &nbsp;Import JSON</span>
+                  <span class="side-item">▤ &nbsp;Question Bank</span>
+                </nav>
+                <div class="admin-body">
+                  <h2>Dashboard</h2>
+                  <div class="panel-sub">Overview of this exam centre.</div>
+                  <div class="stat-grid">
+                    <div class="stat-card">
+                      <div class="num">312</div>
+                      <div class="lbl">Questions in bank</div>
+                    </div>
+                    <div class="stat-card">
+                      <div class="num" style="color: var(--secondary)">1</div>
+                      <div class="lbl">Active exams now</div>
+                    </div>
+                    <div class="stat-card">
+                      <div class="num">42</div>
+                      <div class="lbl">Candidates online</div>
+                    </div>
+                    <div class="stat-card">
+                      <div class="num" style="color: var(--flag)">3</div>
+                      <div class="lbl">Papers awaiting marking</div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <b style="font-size: 15px">Centre status</b>
+                    <p
+                      style="
+                        font-size: 13.5px;
+                        color: var(--on-surface-variant);
+                        margin-top: 8px;
+                        line-height: 1.65;
+                      "
+                    >
+                      English Objective Paper 1 is live with 42 of 45 candidates
+                      connected. Maths Theory Paper 2 is scheduled and locked
+                      until you activate it. All candidate machines reported
+                      their last autosave under 30 seconds ago.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S11 Active exams -->
+        <div class="screen-wrap">
+          <div class="screen-tag"><b>11</b> · Admin — Active Exam Control</div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">
+                EXAMSLING — Admin Console · Active Exams
+              </div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Admin Console</div>
+                    <div class="brand-t2">
+                      Signed in as MR. OKAFOR · Exam Officer
+                    </div>
+                  </div>
+                </div>
+                <span class="mode-chip amber">Admin</span>
+                <div class="spacer"></div>
+                <span class="ghost-btn">← Exit console</span>
+              </div>
+              <div class="admin-shell">
+                <nav class="admin-side">
+                  <div class="side-label">Manage</div>
+                  <span class="side-item">▦ &nbsp;Dashboard</span>
+                  <span class="side-item on">▶ &nbsp;Active Exams</span>
+                  <div class="side-label">Questions</div>
+                  <span class="side-item">＋ &nbsp;Add Question</span>
+                  <span class="side-item">⤓ &nbsp;Import JSON</span>
+                  <span class="side-item">▤ &nbsp;Question Bank</span>
+                </nav>
+                <div class="admin-body">
+                  <h2>Active Exams</h2>
+                  <div class="panel-sub">
+                    Activate a paper to make it available on candidate machines.
+                    Deactivating ends the session for everyone.
+                  </div>
+                  <div class="exam-row">
+                    <div class="er-info">
+                      <div class="er-name">English Objective Paper 1</div>
+                      <div class="er-meta">SS3 · 60 questions · 30 min</div>
+                    </div>
+                    <span class="chip green">● Live · 42 candidates</span>
+                    <span class="btn danger-o sm">Deactivate</span>
+                  </div>
+                  <div
+                    class="exam-row"
+                    style="border: 1.5px solid var(--primary-container)"
+                  >
+                    <div class="er-info">
+                      <div class="er-name">Mathematics Theory Paper 2</div>
+                      <div class="er-meta">SS3 · 5 questions · 45 min</div>
+                    </div>
+                    <span class="chip amber">Scheduled</span>
+                    <span class="btn primary sm">Activate</span>
+                  </div>
+                  <div class="exam-row">
+                    <div class="er-info">
+                      <div class="er-name">Biology Objective Paper 1</div>
+                      <div class="er-meta">SS2 · 50 questions · 40 min</div>
+                    </div>
+                    <span class="chip">Draft</span>
+                    <span class="btn primary sm">Activate</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S12 Add question -->
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>12</b> · Admin — Add Question (Manual)
+          </div>
+          <div class="window h640">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">
+                EXAMSLING — Admin Console · Add Question
+              </div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Admin Console</div>
+                    <div class="brand-t2">
+                      Signed in as MR. OKAFOR · Exam Officer
+                    </div>
+                  </div>
+                </div>
+                <span class="mode-chip amber">Admin</span>
+                <div class="spacer"></div>
+                <span class="ghost-btn">← Exit console</span>
+              </div>
+              <div class="admin-shell">
+                <nav class="admin-side">
+                  <div class="side-label">Manage</div>
+                  <span class="side-item">▦ &nbsp;Dashboard</span>
+                  <span class="side-item">▶ &nbsp;Active Exams</span>
+                  <div class="side-label">Questions</div>
+                  <span class="side-item on">＋ &nbsp;Add Question</span>
+                  <span class="side-item">⤓ &nbsp;Import JSON</span>
+                  <span class="side-item">▤ &nbsp;Question Bank</span>
+                </nav>
+                <div class="admin-body">
+                  <h2>Add Question</h2>
+                  <div class="panel-sub">
+                    Wrap maths in <b>$ … $</b> to render it as an equation, e.g.
+                    <span
+                      style="
+                        font-family: var(--fm);
+                        font-size: 12.5px;
+                        background: var(--surface-container);
+                        padding: 2px 7px;
+                        border-radius: 5px;
+                      "
+                      >$\frac{3}{4}$</span
+                    >
+                  </div>
+                  <div class="card" style="padding: 20px 22px">
+                    <div class="form-grid">
+                      <div>
+                        <span class="f-label">Subject</span>
+                        <div class="f-select">Mathematics ▾</div>
+                      </div>
+                      <div>
+                        <span class="f-label">Question type</span>
+                        <div class="f-select">
+                          Objective (multiple choice) ▾
+                        </div>
+                      </div>
+                      <div>
+                        <span class="f-label">Marks</span>
+                        <div class="f-input">2</div>
+                      </div>
+                      <div>
+                        <span class="f-label">Topic tag</span>
+                        <div class="f-input">fractions</div>
+                      </div>
+                      <div class="full">
+                        <span class="f-label">Question text</span>
+                        <div class="f-area">
+                          Simplify $\frac{3}{4}\div\frac{1}{2}+\frac{5}{8}$,
+                          leaving your answer as a fraction in its lowest terms.
+                        </div>
+                      </div>
+                      <div class="full">
+                        <span class="f-label"
+                          >Options — click a letter to mark the correct
+                          answer</span
+                        >
+                        <div class="opt-edit-row">
+                          <span class="ok2 correct">A</span>
+                          <div class="f-input" style="flex: 1">
+                            $\frac{17}{8}$
+                          </div>
+                        </div>
+                        <div class="opt-edit-row">
+                          <span class="ok2">B</span>
+                          <div class="f-input" style="flex: 1">
+                            $\frac{13}{8}$
+                          </div>
+                        </div>
+                        <div class="opt-edit-row">
+                          <span class="ok2">C</span>
+                          <div class="f-input" style="flex: 1">
+                            $2\frac{1}{8}$
+                          </div>
+                        </div>
+                        <div class="opt-edit-row">
+                          <span class="ok2">D</span>
+                          <div class="f-input" style="flex: 1">
+                            $\frac{11}{8}$
+                          </div>
+                        </div>
+                      </div>
+                      <div class="full">
+                        <span class="f-label"
+                          >Attach image (optional, max 50 KB)</span
+                        >
+                        <div class="f-input" style="color: var(--secondary)">
+                          ✓ velocity_graph.png (38 KB) attached
+                        </div>
+                        <div class="hint">
+                          PNG, JPG or SVG. Files above 50 KB are rejected so
+                          packages stay small for slow connections.
+                        </div>
+                      </div>
+                    </div>
+                    <div style="display: flex; gap: 12px; margin-top: 18px">
+                      <span class="btn primary">Save to question bank</span>
+                      <span class="btn outline">Clear form</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S13 Import JSON -->
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>13</b> · Admin — Import JSON (AI-Formatted Packages)
+          </div>
+          <div class="window h640">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">
+                EXAMSLING — Admin Console · Import JSON
+              </div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Admin Console</div>
+                    <div class="brand-t2">
+                      Signed in as MR. OKAFOR · Exam Officer
+                    </div>
+                  </div>
+                </div>
+                <span class="mode-chip amber">Admin</span>
+                <div class="spacer"></div>
+                <span class="ghost-btn">← Exit console</span>
+              </div>
+              <div class="admin-shell">
+                <nav class="admin-side">
+                  <div class="side-label">Manage</div>
+                  <span class="side-item">▦ &nbsp;Dashboard</span>
+                  <span class="side-item">▶ &nbsp;Active Exams</span>
+                  <div class="side-label">Questions</div>
+                  <span class="side-item">＋ &nbsp;Add Question</span>
+                  <span class="side-item on">⤓ &nbsp;Import JSON</span>
+                  <span class="side-item">▤ &nbsp;Question Bank</span>
+                </nav>
+                <div class="admin-body">
+                  <h2>Import JSON</h2>
+                  <div class="panel-sub">
+                    Paste a question package (AI-formatted to the package
+                    standard). It is validated before anything touches the bank.
+                  </div>
+                  <div class="card" style="padding: 18px 20px">
+                    <div class="json-area">
+                      { <span class="jk">"schemaVersion"</span>:
+                      <span class="js">"1.0"</span>,
+                      <span class="jk">"packageId"</span>:
+                      <span class="js">"school-maths-batch-7"</span>,
+                      <span class="jk">"subject"</span>:
+                      <span class="js">"Mathematics"</span>,
+                      <span class="jk">"questions"</span>: [ {
+                      <span class="jk">"id"</span>:
+                      <span class="js">"q1"</span>,
+                      <span class="jk">"type"</span>:
+                      <span class="js">"multiple_choice"</span>,
+                      <span class="jk">"marks"</span>:
+                      <span class="jn">2</span>, <span class="jk">"body"</span>:
+                      [ { <span class="jk">"type"</span>:
+                      <span class="js">"paragraph"</span>,
+                      <span class="jk">"content"</span>: [ {
+                      <span class="jk">"type"</span>:
+                      <span class="js">"text"</span>,
+                      <span class="jk">"value"</span>:
+                      <span class="js">"Simplify "</span> }, {
+                      <span class="jk">"type"</span>:
+                      <span class="js">"math"</span>,
+                      <span class="jk">"latex"</span>:
+                      <span class="js">"\\frac{3}{4}\\div\\frac{1}{2}"</span> }
+                      ] } ] }, { <span class="jk">"id"</span>:
+                      <span class="js">"q2"</span>,
+                      <span class="jk">"type"</span>:
+                      <span class="js">"theory_structured"</span>,
+                      <span class="jk">"marks"</span>:
+                      <span class="jn">6</span>, … } ],
+                      <span class="jk">"assets"</span>: [] }
+                    </div>
+                    <div
+                      style="
+                        display: flex;
+                        gap: 12px;
+                        margin-top: 14px;
+                        align-items: center;
+                      "
+                    >
+                      <span class="btn primary">Validate</span>
+                      <span class="btn outline">Import to bank</span>
+                      <span class="btn outline">Paste sample package</span>
+                    </div>
+                    <div style="margin-top: 12px">
+                      <div class="val-line ok">
+                        <span>✓</span><span>Valid JSON syntax</span>
+                      </div>
+                      <div class="val-line ok">
+                        <span>✓</span><span>schemaVersion 1.0</span>
+                      </div>
+                      <div class="val-line ok">
+                        <span>✓</span
+                        ><span
+                          >2 question(s) found — every question has id, type and
+                          body</span
+                        >
+                      </div>
+                      <div class="val-line ok">
+                        <span>✓</span
+                        ><span
+                          >Types: 1× multiple_choice, 1× theory_structured</span
+                        >
+                      </div>
+                      <div class="val-line ok" style="font-weight: 700">
+                        <span>✓</span><span>Package is ready to import</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S14 Question bank -->
+        <div class="screen-wrap">
+          <div class="screen-tag"><b>14</b> · Admin — Question Bank</div>
+          <div class="window h560">
+            <div class="titlebar">
+              <span class="tb-dot r"></span><span class="tb-dot y"></span
+              ><span class="tb-dot g"></span>
+              <div class="tb-title">
+                EXAMSLING — Admin Console · Question Bank
+              </div>
+              <div class="tb-pad"></div>
+            </div>
+            <div class="win-body">
+              <div class="appbar">
+                <div class="brand">
+                  <div class="brand-mark">ED</div>
+                  <div>
+                    <div class="brand-t1">Admin Console</div>
+                    <div class="brand-t2">
+                      Signed in as MR. OKAFOR · Exam Officer
+                    </div>
+                  </div>
+                </div>
+                <span class="mode-chip amber">Admin</span>
+                <div class="spacer"></div>
+                <span class="ghost-btn">← Exit console</span>
+              </div>
+              <div class="admin-shell">
+                <nav class="admin-side">
+                  <div class="side-label">Manage</div>
+                  <span class="side-item">▦ &nbsp;Dashboard</span>
+                  <span class="side-item">▶ &nbsp;Active Exams</span>
+                  <div class="side-label">Questions</div>
+                  <span class="side-item">＋ &nbsp;Add Question</span>
+                  <span class="side-item">⤓ &nbsp;Import JSON</span>
+                  <span class="side-item on">▤ &nbsp;Question Bank</span>
+                </nav>
+                <div class="admin-body">
+                  <h2>Question Bank</h2>
+                  <div class="panel-sub">
+                    Everything available for building papers — manually added
+                    and imported.
+                  </div>
+                  <table class="bank-table">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Subject</th>
+                        <th>Type</th>
+                        <th>Marks</th>
+                        <th>Question</th>
+                        <th>Source</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Mathematics</td>
+                        <td>Theory (maths)</td>
+                        <td>6</td>
+                        <td>
+                          Solve $2x^{2}-5x-3=0$ using the quadratic formula…
+                        </td>
+                        <td><span class="chip teal">Manual</span></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>English Language</td>
+                        <td>Objective</td>
+                        <td>2</td>
+                        <td>
+                          Adamu's attitude to his brother's life in the city…
+                        </td>
+                        <td><span class="chip green">Import</span></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Biology</td>
+                        <td>Objective</td>
+                        <td>2</td>
+                        <td>
+                          The part labelled II in Fig. 1 is responsible for…
+                        </td>
+                        <td><span class="chip green">Import</span></td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Mathematics</td>
+                        <td>Objective</td>
+                        <td>2</td>
+                        <td>
+                          Simplify $\frac{3}{4}\div\frac{1}{2}+\frac{5}{8}$…
+                        </td>
+                        <td><span class="chip teal">Manual</span></td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Mathematics</td>
+                        <td>Theory (maths)</td>
+                        <td>6</td>
+                        <td>
+                          Make $r$ the subject of $V=\frac{4}{3}\pi r^{3}$…
+                        </td>
+                        <td><span class="chip green">Import</span></td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>English Language</td>
+                        <td>Essay</td>
+                        <td>10</td>
+                        <td>Write an argument for or against the motion…</td>
+                        <td><span class="chip teal">Manual</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ 06 · DESIGN SYSTEM ═══════════════ -->
+      <div class="section-label">06 · Design System — Soft Clinical</div>
+      <div class="screens-grid">
+        <div class="screen-wrap">
+          <div class="screen-tag"><b>DS</b> · Color · Typography · Shape</div>
+          <div class="ds-card">
+            <div class="ds-title">Primary &amp; Brand</div>
+            <div class="sw-row">
+              <div class="sw">
+                <div class="swc" style="background: #006a63"></div>
+                <div class="swn">Primary</div>
+                <div class="swv">#006a63</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #0a7c74"></div>
+                <div class="swn">Primary Hover</div>
+                <div class="swv">#0a7c74</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #4db6ac"></div>
+                <div class="swn">Primary Container</div>
+                <div class="swv">#4db6ac</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #8ef4e9"></div>
+                <div class="swn">Primary Fixed</div>
+                <div class="swv">#8ef4e9</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #d4e6e5"></div>
+                <div class="swn">Tertiary Fixed</div>
+                <div class="swv">#d4e6e5</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #286b33"></div>
+                <div class="swn">Secondary</div>
+                <div class="swv">#286b33</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #abf4ac"></div>
+                <div class="swn">Secondary Container</div>
+                <div class="swv">#abf4ac</div>
+              </div>
+            </div>
+            <div class="ds-title" style="margin-top: 30px">
+              Surfaces &amp; Neutrals
+            </div>
+            <div class="sw-row">
+              <div class="sw">
+                <div class="swc" style="background: #fbf9f9"></div>
+                <div class="swn">Background</div>
+                <div class="swv">#fbf9f9</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #ffffff"></div>
+                <div class="swn">Surface</div>
+                <div class="swv">#ffffff</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #f5f3f3"></div>
+                <div class="swn">Surface Low</div>
+                <div class="swv">#f5f3f3</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #efeded"></div>
+                <div class="swn">Surface Container</div>
+                <div class="swv">#efeded</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #1b1c1c"></div>
+                <div class="swn">On Surface</div>
+                <div class="swv">#1b1c1c</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #3d4947"></div>
+                <div class="swn">On Surface Variant</div>
+                <div class="swv">#3d4947</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #bdc9c6"></div>
+                <div class="swn">Outline Variant</div>
+                <div class="swv">#bdc9c6</div>
+              </div>
+            </div>
+            <div class="ds-title" style="margin-top: 30px">Status</div>
+            <div class="sw-row">
+              <div class="sw">
+                <div class="swc" style="background: #ba1a1a"></div>
+                <div class="swn">Error / Time Low</div>
+                <div class="swv">#ba1a1a</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #ffdad6"></div>
+                <div class="swn">Error Container</div>
+                <div class="swv">#ffdad6</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #b88a1d"></div>
+                <div class="swn">Flag</div>
+                <div class="swv">#b88a1d</div>
+              </div>
+              <div class="sw">
+                <div class="swc" style="background: #fff0c9"></div>
+                <div class="swn">Flag Container</div>
+                <div class="swv">#fff0c9</div>
+              </div>
+            </div>
+            <div class="ds-title" style="margin-top: 30px">
+              Typography — Inter
+            </div>
+            <div class="type-row">
+              <span class="type-meta">Display · 800 · 68px · -3px</span
+              ><span
+                style="font-size: 42px; font-weight: 800; letter-spacing: -2px"
+                >EXAMSLING</span
+              >
+            </div>
+            <div class="type-row">
+              <span class="type-meta">H2 Panel Title · 600 · 21px</span
+              ><span
+                style="
+                  font-size: 21px;
+                  font-weight: 600;
+                  letter-spacing: -0.01em;
+                "
+                >Active Exams</span
+              >
+            </div>
+            <div class="type-row">
+              <span class="type-meta">Question Text · 400 · 16.5px / 1.6</span
+              ><span style="font-size: 16.5px"
+                >Solve the equation 2x² − 5x − 3 = 0 using the quadratic
+                formula.</span
+              >
+            </div>
+            <div class="type-row">
+              <span class="type-meta">Label · 600 · 12px · caps · .08em</span
+              ><span
+                style="
+                  font-size: 12px;
+                  font-weight: 600;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                "
+                >Your Working</span
+              >
+            </div>
+            <div class="type-row">
+              <span class="type-meta">Maths · Georgia italic · 20px</span
+              ><span class="m" style="font-size: 20px"
+                >x = (−b ± √(b² − 4ac)) / 2a</span
+              >
+            </div>
+            <div class="type-row" style="border-bottom: none">
+              <span class="type-meta">Mono · JetBrains Mono · 12.5px</span
+              ><span style="font-family: var(--fm); font-size: 12.5px"
+                >"schemaVersion": "1.0"</span
+              >
+            </div>
+            <div class="ds-title" style="margin-top: 30px">
+              Shape &amp; Elevation
+            </div>
+            <div class="comp-grid">
+              <div
+                class="comp-block"
+                style="display: flex; gap: 18px; align-items: center"
+              >
+                <div
+                  style="
+                    width: 74px;
+                    height: 54px;
+                    background: var(--surface);
+                    border-radius: 8px;
+                    box-shadow: var(--sh1);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 11px;
+                    color: var(--outline);
+                  "
+                >
+                  8px
+                </div>
+                <div
+                  style="
+                    width: 74px;
+                    height: 54px;
+                    background: var(--surface);
+                    border-radius: 12px;
+                    box-shadow: var(--sh1);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 11px;
+                    color: var(--outline);
+                  "
+                >
+                  12px
+                </div>
+                <div
+                  style="
+                    width: 74px;
+                    height: 54px;
+                    background: var(--surface);
+                    border-radius: 16px;
+                    box-shadow: var(--sh2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 11px;
+                    color: var(--outline);
+                  "
+                >
+                  16px
+                </div>
+                <div
+                  style="
+                    width: 74px;
+                    height: 54px;
+                    background: var(--surface);
+                    border-radius: 9999px;
+                    box-shadow: var(--sh1);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 11px;
+                    color: var(--outline);
+                  "
+                >
+                  pill
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════ 07 · COMPONENTS ═══════════════ -->
+      <div class="section-label">07 · Components</div>
+      <div class="screens-grid">
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>C1</b> · Buttons · Chips · Pills · Timer
+          </div>
+          <div class="ds-card">
+            <div class="comp-grid">
+              <div class="comp-block">
+                <div class="comp-label">Buttons</div>
+                <div class="comp-inner">
+                  <span class="btn primary">Primary</span
+                  ><span class="btn outline">Outline</span
+                  ><span class="btn danger-o">Danger</span
+                  ><span class="btn primary" style="opacity: 0.45"
+                    >Disabled</span
+                  >
+                </div>
+              </div>
+              <div class="comp-block">
+                <div class="comp-label">Nav Buttons</div>
+                <div class="comp-inner">
+                  <span class="nav-btn prev">◀ Previous</span
+                  ><span class="nav-btn next">Next ▶</span
+                  ><span class="nav-btn submit" style="margin-left: 0"
+                    >Submit paper</span
+                  >
+                </div>
+              </div>
+              <div class="comp-block">
+                <div class="comp-label">Chips &amp; Status</div>
+                <div class="comp-inner">
+                  <span class="chip">Default</span
+                  ><span class="chip teal">Calculator allowed</span
+                  ><span class="chip green">● Live · 42</span
+                  ><span class="chip amber">Scheduled</span
+                  ><span class="chip red">Over limit</span
+                  ><span class="mode-chip">Internal Exam</span
+                  ><span class="mode-chip amber">Admin</span>
+                </div>
+              </div>
+              <div class="comp-block">
+                <div class="comp-label">Autosave Pill</div>
+                <div class="comp-inner">
+                  <span class="save-pill"
+                    ><span class="dot"></span>All work saved</span
+                  >
+                  <span class="save-pill saving"
+                    ><span class="dot"></span>Saving…</span
+                  >
+                </div>
+              </div>
+              <div class="comp-block">
+                <div class="comp-label">Timer States</div>
+                <div class="comp-inner">
+                  <span class="timer">38:05</span
+                  ><span class="timer low">04:21</span>
+                </div>
+              </div>
+              <div class="comp-block">
+                <div class="comp-label">Download Progress</div>
+                <div class="comp-inner" style="width: 280px">
+                  <div class="dl-bar" style="width: 200px">
+                    <div style="width: 64%"></div>
+                  </div>
+                  <span
+                    style="
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: var(--secondary);
+                    "
+                    >64%</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-wrap">
+          <div class="screen-tag">
+            <b>C2</b> · Question Map · Options · Fields
+          </div>
+          <div class="ds-card">
+            <div class="comp-grid">
+              <div class="comp-block">
+                <div class="comp-label">Question Map States</div>
+                <div class="comp-inner">
+                  <span class="qdot">7</span><span class="qdot current">8</span
+                  ><span class="qdot answered">9</span
+                  ><span class="qdot answered flagged">10</span
+                  ><span class="qdot current answered flagged">11</span>
+                </div>
+              </div>
+              <div class="comp-block" style="width: 430px">
+                <div class="comp-label">Option Card States</div>
+                <div class="opt" style="margin-bottom: 10px">
+                  <span class="ok">A</span><span>Default option</span>
+                </div>
+                <div class="opt sel" style="margin-bottom: 10px">
+                  <span class="ok">B</span><span>Selected option</span>
+                </div>
+                <div
+                  class="opt sel"
+                  style="border-color: var(--secondary); background: #f4fbf4"
+                >
+                  <span
+                    class="ok"
+                    style="background: var(--secondary); color: #fff"
+                    >C</span
+                  ><span>Correct (practice mode)</span
+                  ><span class="chip green" style="margin-left: auto">✓</span>
+                </div>
+              </div>
+              <div class="comp-block" style="width: 430px">
+                <div class="comp-label">Working Line States</div>
+                <div class="step-row" style="margin-bottom: 10px">
+                  <div class="mf" style="color: var(--outline)">
+                    Empty line — tap to type
+                  </div>
+                </div>
+                <div class="step-row" style="margin-bottom: 10px">
+                  <div class="mf focus">
+                    <span class="m"
+                      >x =
+                      <span class="frac"
+                        ><span class="ft">5 ± 7</span
+                        ><span class="fb2">4</span></span
+                      ></span
+                    ><span class="caret"></span>
+                  </div>
+                </div>
+                <div class="step-row">
+                  <div class="mf final">
+                    <span class="m"
+                      >x = 3 or x = −<span class="frac"
+                        ><span class="ft">1</span
+                        ><span class="fb2">2</span></span
+                      ></span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="comp-block" style="width: 430px">
+                <div class="comp-label">Form Fields</div>
+                <span class="f-label">Default</span>
+                <div class="f-input" style="margin-bottom: 10px">
+                  Mathematics
+                </div>
+                <span class="f-label">Focused</span>
+                <div class="f-input focus" style="margin-bottom: 10px">
+                  fractions
+                </div>
+                <span class="f-label">Validation</span>
+                <div class="val-line ok">
+                  <span>✓</span><span>velocity_graph.png (38 KB) attached</span>
+                </div>
+                <div class="val-line bad">
+                  <span>✕</span
+                  ><span>diagram.png is 112 KB — over the 50 KB limit</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-wrap">
+          <div class="screen-tag"><b>C3</b> · Maths Keypad Keys</div>
+          <div class="ds-card">
+            <div class="comp-grid">
+              <div class="comp-block">
+                <div class="comp-label">Key Variants</div>
+                <div class="comp-inner">
+                  <span class="key num" style="width: 58px">7</span>
+                  <span class="key op" style="width: 58px">÷</span>
+                  <span class="key fn" style="width: 64px"
+                    >▭⁄▭<small>fraction</small></span
+                  >
+                  <span class="key fn" style="width: 64px"
+                    >√▭<small>root</small></span
+                  >
+                  <span class="key soft" style="width: 58px">π</span>
+                  <span class="key soft" style="width: 58px">◀</span>
+                  <span class="key warn" style="width: 58px">⌫</span>
+                  <span class="key warn" style="width: 70px">CLEAR</span>
+                </div>
+              </div>
+              <div class="comp-block">
+                <div class="comp-label">Keypad Zones (rule)</div>
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--on-surface-variant);
+                    line-height: 1.7;
+                    max-width: 420px;
+                  "
+                >
+                  <b style="color: var(--on-surface)">Common zone</b> —
+                  fraction, root, powers, brackets, π, ±, variables, cursor
+                  keys: always on screen, never moves.<br />
+                  <b style="color: var(--on-surface)">Number zone</b> — digits
+                  and operators in physical-calculator positions, ⌫ / CLEAR
+                  top-right.<br />
+                  <b style="color: var(--on-surface)">More zone</b> — trig,
+                  logs, symbols: expands in place below; core keys never shift
+                  or hide. No tabs, ever.
+                </div>
+              </div>
+              <div class="comp-block">
+                <div class="comp-label">Toast</div>
+                <div class="comp-inner">
+                  <span
+                    style="
+                      background: #243230;
+                      color: #eef4f2;
+                      font-size: 14px;
+                      font-weight: 500;
+                      padding: 13px 22px;
+                      border-radius: 12px;
+                      box-shadow: var(--sh2);
+                    "
+                    >2 questions imported into the bank</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="
+          text-align: center;
+          margin-top: 80px;
+          color: #5c7a74;
+          font-size: 12px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          font-weight: 600;
+        "
+      >
+        EXAMSLING CBT Desktop Suite · 14 screens · Soft Clinical Design System ·
+        1180 × desktop frames
+      </div>
+    </div>
+  </body>
+</html>
