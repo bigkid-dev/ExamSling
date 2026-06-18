@@ -560,6 +560,114 @@ body{background:#0b1614;font-family:var(--fb);padding:56px 40px 90px;color:#e8ef
 </div>
 </div>
 
+
+<!-- A08b Pending Approvals -->
+<div class="screen-wrap">
+<div class="screen-tag"><b>A08b</b> · Student Profiles — Pending Registrations</div>
+<div class="window h640">
+<div class="titlebar"><span class="tb-dot r"></span><span class="tb-dot y"></span><span class="tb-dot g"></span><div class="tb-title">ExamDesk Admin — Pending Registrations</div><div class="tb-pad"></div></div>
+<div class="win-body"><div class="appbar"><div class="brand"><div class="brand-mark">ED</div><div><div class="brand-t1">Pending Registrations</div><div class="brand-t2">Students who self-registered and are awaiting approval</div></div></div><span class="mode-chip">Admin</span><div class="spacer"></div><span class="chip amber">⚠ 6 awaiting review</span><span class="btn primary sm" style="margin-left:8px;">Approve all valid</span></div>
+<div class="admin-shell">
+<nav class="admin-side">
+  <div class="side-section">Overview</div><div class="side-item"><span class="ico">▦</span>Dashboard</div>
+  <div class="side-section">Students</div>
+  <div class="side-item on"><span class="ico">👤</span>Student Profiles</div><div class="side-item"><span class="ico">🏫</span>Classes</div>
+  <div class="side-section">Exams</div><div class="side-item"><span class="ico">📋</span>Manage Exams</div><div class="side-item"><span class="ico">▶</span>Active Exams</div>
+  <div class="side-section">Questions</div><div class="side-item"><span class="ico">＋</span>Add Question</div><div class="side-item"><span class="ico">⤓</span>Import JSON</div><div class="side-item"><span class="ico">🤖</span>Prompt Converter</div><div class="side-item"><span class="ico">▤</span>Question Bank</div><div class="side-item"><span class="ico">🌐</span>Past Questions</div>
+  <div class="side-section">Results</div><div class="side-item"><span class="ico">📊</span>Results &amp; Reports</div>
+</nav>
+<div class="admin-body">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+    <h2>Pending Registrations</h2>
+    <div style="display:flex;gap:8px;">
+      <span class="chip amber">6 pending</span><span class="chip green">142 approved this term</span>
+    </div>
+  </div>
+  <div class="panel-sub">Students who self-registered. Approve to assign an exam number and grant full access. Reject to remove their account.</div>
+  <!-- explanation card -->
+  <div style="background:var(--flag-container);border:1px solid #e3c878;border-radius:var(--r-md);padding:13px 16px;font-size:13.5px;color:#5a4a10;margin-bottom:16px;line-height:1.6;">
+    When you <b>approve</b> a student, an exam number (e.g. GFC/26/0248) is auto-assigned and they gain full access to their class exams. Approving also locks their class assignment — it cannot be changed without editing the profile.
+  </div>
+  <!-- table -->
+  <div style="background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--sh1);overflow:hidden;">
+    <div style="display:grid;grid-template-columns:36px 1fr 90px 90px 110px 120px 160px;gap:0;background:var(--surface-low);padding:11px 16px;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--on-surface-variant);">
+      <div></div><div>Student</div><div>Class</div><div>Arm</div><div>Registered</div><div>Password</div><div>Actions</div>
+    </div>
+    <!-- row 1 — looks legit -->
+    <div style="display:grid;grid-template-columns:36px 1fr 90px 90px 110px 120px 160px;gap:0;padding:13px 16px;border-top:1px solid var(--surface-high);align-items:center;font-size:14px;">
+      <div class="cb checked">✓</div>
+      <div><div style="font-weight:600;">ADEYEMI Oluwafemi</div><div style="font-size:12px;color:var(--on-surface-variant);">oluwafemiadeyemi@greenfield.edu.ng</div></div>
+      <div><span class="chip teal" style="font-size:11.5px;">SS3</span></div><div style="font-size:13.5px;">Science A</div>
+      <div style="font-size:13px;color:var(--on-surface-variant);">Today 08:14</div>
+      <div><span class="chip green" style="font-size:11.5px;">Own</span></div>
+      <div style="display:flex;gap:6px;"><span class="btn primary xs">Approve</span><span class="btn danger-o xs">Reject</span></div>
+    </div>
+    <!-- row 2 -->
+    <div style="display:grid;grid-template-columns:36px 1fr 90px 90px 110px 120px 160px;gap:0;padding:13px 16px;border-top:1px solid var(--surface-high);align-items:center;font-size:14px;">
+      <div class="cb checked">✓</div>
+      <div><div style="font-weight:600;">IBRAHIM Amina</div><div style="font-size:12px;color:var(--on-surface-variant);">aminaibrahim@greenfield.edu.ng</div></div>
+      <div><span class="chip teal" style="font-size:11.5px;">SS3</span></div><div style="font-size:13.5px;">Arts B</div>
+      <div style="font-size:13px;color:var(--on-surface-variant);">Today 08:31</div>
+      <div><span class="chip" style="font-size:11.5px;">Default</span></div>
+      <div style="display:flex;gap:6px;"><span class="btn primary xs">Approve</span><span class="btn danger-o xs">Reject</span></div>
+    </div>
+    <!-- row 3 — wrong class flagged -->
+    <div style="display:grid;grid-template-columns:36px 1fr 90px 90px 110px 120px 160px;gap:0;padding:13px 16px;border-top:1px solid var(--surface-high);align-items:center;font-size:14px;background:#fffaf5;">
+      <div class="cb"></div>
+      <div><div style="font-weight:600;">OKONKWO Chidi</div><div style="font-size:12px;color:var(--on-surface-variant);">chidiokonkwo@greenfield.edu.ng</div></div>
+      <div><span class="chip amber" style="font-size:11.5px;">SS3</span></div><div style="font-size:13.5px;">Science A</div>
+      <div style="font-size:13px;color:var(--on-surface-variant);">Today 09:02</div>
+      <div><span class="chip" style="font-size:11.5px;">Default</span></div>
+      <div style="display:flex;gap:6px;flex-direction:column;align-items:flex-start;">
+        <div style="display:flex;gap:5px;"><span class="btn primary xs">Approve</span><span class="btn danger-o xs">Reject</span></div>
+        <div style="font-size:11.5px;color:var(--flag);">⚠ Class mismatch — check</div>
+      </div>
+    </div>
+    <!-- row 4 -->
+    <div style="display:grid;grid-template-columns:36px 1fr 90px 90px 110px 120px 160px;gap:0;padding:13px 16px;border-top:1px solid var(--surface-high);align-items:center;font-size:14px;">
+      <div class="cb"></div>
+      <div><div style="font-weight:600;">NWOSU Favour</div><div style="font-size:12px;color:var(--on-surface-variant);">favournwosu@greenfield.edu.ng</div></div>
+      <div><span class="chip amber" style="font-size:11.5px;">SS2</span></div><div style="font-size:13.5px;">Comm. B</div>
+      <div style="font-size:13px;color:var(--on-surface-variant);">Yesterday</div>
+      <div><span class="chip green" style="font-size:11.5px;">Own</span></div>
+      <div style="display:flex;gap:6px;"><span class="btn primary xs">Approve</span><span class="btn danger-o xs">Reject</span></div>
+    </div>
+    <!-- row 5 — duplicate name warning -->
+    <div style="display:grid;grid-template-columns:36px 1fr 90px 90px 110px 120px 160px;gap:0;padding:13px 16px;border-top:1px solid var(--surface-high);align-items:center;font-size:14px;background:#fff8f8;">
+      <div class="cb"></div>
+      <div><div style="font-weight:600;">ADEYEMI Oluwafemi</div><div style="font-size:12px;color:var(--on-surface-variant);">oluwafemiadeyemi2@greenfield.edu.ng</div></div>
+      <div><span class="chip teal" style="font-size:11.5px;">SS3</span></div><div style="font-size:13.5px;">Science A</div>
+      <div style="font-size:13px;color:var(--on-surface-variant);">Today 09:45</div>
+      <div><span class="chip" style="font-size:11.5px;">Default</span></div>
+      <div style="display:flex;gap:6px;flex-direction:column;align-items:flex-start;">
+        <div style="display:flex;gap:5px;"><span class="btn primary xs">Approve</span><span class="btn danger-o xs">Reject</span></div>
+        <div style="font-size:11.5px;color:var(--error);">⚠ Duplicate name in SS3</div>
+      </div>
+    </div>
+    <!-- row 6 -->
+    <div style="display:grid;grid-template-columns:36px 1fr 90px 90px 110px 120px 160px;gap:0;padding:13px 16px;border-top:1px solid var(--surface-high);align-items:center;font-size:14px;">
+      <div class="cb"></div>
+      <div><div style="font-weight:600;">BELLO Taiwo</div><div style="font-size:12px;color:var(--on-surface-variant);">taiwobello@greenfield.edu.ng</div></div>
+      <div><span class="chip" style="font-size:11.5px;">JSS3</span></div><div style="font-size:13.5px;">A</div>
+      <div style="font-size:13px;color:var(--on-surface-variant);">Yesterday</div>
+      <div><span class="chip" style="font-size:11.5px;">Default</span></div>
+      <div style="display:flex;gap:6px;"><span class="btn primary xs">Approve</span><span class="btn danger-o xs">Reject</span></div>
+    </div>
+  </div>
+  <!-- bulk action bar -->
+  <div style="display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 16px;background:var(--surface);border-radius:var(--r-md);box-shadow:var(--sh1);">
+    <div class="cb checked">✓</div>
+    <div style="font-size:13.5px;color:var(--on-surface-variant);">2 selected</div>
+    <span class="btn primary sm">Approve selected (2)</span>
+    <span class="btn danger-o sm">Reject selected</span>
+    <div style="margin-left:auto;font-size:13px;color:var(--outline);">Approving assigns exam numbers starting at GFC/26/0248</div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </div><!-- end section 03 -->
 
 <!-- SECTION 04: EXAMS -->
